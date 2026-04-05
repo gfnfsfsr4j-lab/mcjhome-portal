@@ -81,6 +81,8 @@ function PasswordGate({ onUnlock }) {
 
   return (
     <div className={`gate ${unlocking ? 'gate--unlocking' : ''}`}>
+      <div className="gate-bg-img" />
+      <div className="gate-bg-frost" />
       <BlueprintBg />
       <div className="gate-content">
         <div className="gate-brand fade-in" style={{ animationDelay: '0.2s' }}>
@@ -176,13 +178,20 @@ function Portal() {
         </header>
 
         <section className="hero">
-          <div className="hero-label fade-in" style={{ animationDelay: '0.2s' }}>Home</div>
-          <h1 className="hero-title fade-in" style={{ animationDelay: '0.35s' }}>
-            A family workspace<br />built with vision.
-          </h1>
-          <p className="hero-sub fade-in" style={{ animationDelay: '0.5s' }}>
-            Every app begins with understanding what a family needs.
-          </p>
+          <div className="hero-inner">
+            <div className="hero-text">
+              <div className="hero-label fade-in" style={{ animationDelay: '0.2s' }}>Home</div>
+              <h1 className="hero-title fade-in" style={{ animationDelay: '0.35s' }}>
+                A family workspace<br />built with vision.
+              </h1>
+              <p className="hero-sub fade-in" style={{ animationDelay: '0.5s' }}>
+                Every app begins with understanding what a family needs.
+              </p>
+            </div>
+            <div className="hero-portrait fade-in" style={{ animationDelay: '0.6s' }}>
+              <img src="/family.png" alt="" className="hero-portrait-img" />
+            </div>
+          </div>
         </section>
 
         <section className="apps-section">
@@ -286,11 +295,22 @@ function Styles() {
       }
       .shake { animation: shake 0.4s ease; }
 
+      /* ---- Gate ---- */
       .gate {
         min-height: 100vh; min-height: 100dvh;
         display: flex; align-items: center; justify-content: center;
         position: relative; overflow: hidden;
         transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      .gate-bg-img {
+        position: absolute; inset: 0; z-index: 0;
+        background: url('/family.png') center center / cover no-repeat;
+        filter: saturate(0.3) brightness(1.05);
+      }
+      .gate-bg-frost {
+        position: absolute; inset: 0; z-index: 0;
+        background: rgba(240, 237, 230, 0.82);
+        backdrop-filter: blur(30px);
       }
       .gate--unlocking { opacity: 0; transform: scale(1.03); }
       .gate-content {
@@ -347,6 +367,7 @@ function Styles() {
         font-weight: 300; letter-spacing: 1px;
       }
 
+      /* ---- Portal ---- */
       .portal { min-height: 100vh; min-height: 100dvh; position: relative; overflow: hidden; }
       .portal-content {
         position: relative; z-index: 1;
@@ -368,6 +389,24 @@ function Styles() {
       }
 
       .hero { padding: 5rem 0 3.5rem; border-bottom: 0.5px solid var(--border); }
+      .hero-inner {
+        display: flex; align-items: center; gap: 3rem;
+      }
+      .hero-text { flex: 1; }
+      .hero-portrait {
+        flex-shrink: 0; width: 180px; height: 180px;
+        border-radius: 50%; overflow: hidden;
+        border: 0.5px solid var(--border);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      }
+      .hero-portrait-img {
+        width: 100%; height: 100%; object-fit: cover;
+        filter: saturate(0.7) brightness(1.02);
+        transition: filter 0.5s ease;
+      }
+      .hero-portrait:hover .hero-portrait-img {
+        filter: saturate(1) brightness(1);
+      }
       .hero-label {
         font-family: var(--sans); font-size: 11px; letter-spacing: 2px;
         text-transform: uppercase; color: var(--text-light); margin-bottom: 1.75rem;
@@ -457,9 +496,12 @@ function Styles() {
       }
       .footer-copy { font-family: var(--sans); font-size: 11px; color: var(--text-faint); }
 
+      /* ---- Mobile ---- */
       @media (max-width: 640px) {
         .portal-content { padding: 0 1.25rem; }
         .hero { padding: 3.5rem 0 2.5rem; }
+        .hero-inner { flex-direction: column-reverse; gap: 1.5rem; align-items: flex-start; }
+        .hero-portrait { width: 100px; height: 100px; }
         .hero-title { font-size: 36px; letter-spacing: -0.8px; }
         .hero-sub { font-size: 16px; }
         .apps-grid { grid-template-columns: 1fr; gap: 12px; }
