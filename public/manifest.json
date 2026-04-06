@@ -1,0 +1,12 @@
+{
+  "name": "mcjhome.space",
+  "short_name": "mcjhome",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F0EDE6",
+  "theme_color": "#F0EDE6",
+  "icons": [
+    { "src": "/mcjhome-icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/mcjhome-icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
