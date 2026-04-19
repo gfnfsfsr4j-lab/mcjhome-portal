@@ -30,6 +30,15 @@ const apps = [
     domain: 'trip.mcjhome.space',
     accent: '#5a7a65',
   },
+  {
+    id: '04',
+    name: 'NeuroSpark',
+    nameCn: '神经启发',
+    desc: '60 days of AI × neuroscience koans. Daily 10-min read.',
+    url: 'https://neuro.mcjhome.space',
+    domain: 'neuro.mcjhome.space',
+    accent: '#8b5e3c',
+  },
 ]
 
 function BlueprintBg() {
